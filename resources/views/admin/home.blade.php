@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    holaaaaaaaaaaaa
+    Benvenuto Utente
 @endsection
