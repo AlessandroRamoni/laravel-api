@@ -10,6 +10,6 @@ class HomeController extends Controller
     //
 
     public function index() {
-        return 'holaaaaaaaaaaa';
+        return view('admin.home');
     }
 }
