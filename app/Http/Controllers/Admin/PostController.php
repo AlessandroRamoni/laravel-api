@@ -6,6 +6,9 @@ use App\Post;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+
+
 class PostController extends Controller
 {
     /**
@@ -28,6 +31,7 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view('admin.posts.create');
     }
 
     /**
@@ -39,6 +43,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'content' => 'required',
+        ]);
+
+        $form_data = $request->all();
+        $post = new Post();
+        $post->fill($form_data);
+
+        $slug = $this->getSlug($post->title);
+        $post->slug = $slug;
+        $post->save();
+
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -50,6 +68,7 @@ class PostController extends Controller
     public function show(Post $post)
     {
         //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -61,6 +80,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         //
+
     }
 
     /**
