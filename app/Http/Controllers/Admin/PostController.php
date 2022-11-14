@@ -93,6 +93,20 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         //
+        $request->validate([
+            'title' => 'required|min:5|max:255',
+            'content' => 'required',
+        ]);
+        $form_data = $request->all();
+
+        if ($post->title != $form_data['title']) {
+            $slug = $this->getSlug($form_data['title']);
+            $form_data['slug'] = $slug;
+        }
+
+        $post->update($form_data);
+
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
