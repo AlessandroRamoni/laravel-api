@@ -118,5 +118,17 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         //
+        $post->delete();
+        return redirect()->route('admin.posts.index');
     }
+    private function getSlug($title){
+        $slug = Str::slug($title);
+        $slug_base = $slug;
+        $existingPost = Post::where('slug', $slug)->first();
+        $counter = 1;
+        while ($existingPost) {
+            $slug = $slug_base . '_' . $counter;
+            $counter++;
+            $existingPost = Post::where('slug', $slug)->first();        }        return $slug;
+        }
 }
