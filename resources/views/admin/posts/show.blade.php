@@ -5,6 +5,6 @@
     <p>{{ $post->content }}</p>
 
     <div class="mt-5">
-        <a href="{{ route('admin.posts.edit') }}">Edit</a>
+        <a href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
     </div>
 @endsection
