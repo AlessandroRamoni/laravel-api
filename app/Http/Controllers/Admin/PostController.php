@@ -129,6 +129,8 @@ class PostController extends Controller
         while ($existingPost) {
             $slug = $slug_base . '_' . $counter;
             $counter++;
-            $existingPost = Post::where('slug', $slug)->first();        }        return $slug;
+            $existingPost = Post::where('slug', $slug)->first();
+        }
+            return $slug;
         }
 }
