@@ -12,11 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <script src="{{ asset('js/app.js') }} " defer></script>
+    <script src="{{ asset('js/front.js') }} " defer></script>
 </head>
 
 <body>
-    <h1>Sono nella home guest</h1>
+
     <div id="root"></div>
 </body>
 
