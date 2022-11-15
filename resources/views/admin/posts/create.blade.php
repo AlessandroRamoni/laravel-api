@@ -22,6 +22,17 @@
                 </div>
             @enderror
         </div>
+
+        <div>
+            <label for="category_id">Categoria:</label>
+            <select name="category_id">
+                <option value="">Nessuna</option>
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div>
             <label for="content">Content:</label>
             <textarea required name="content" cols="30" rows="10">{{ old('content') }}</textarea>
