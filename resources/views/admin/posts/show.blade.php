@@ -8,9 +8,11 @@
         <a href="{{ route('admin.posts.edit', $post->id) }}">Edit</a>
     </div>
 
-    <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="POST">
-        @csrf
-        @method('DELETE')
-        <input type="submit" class="delete-btn" value="DELETE">
-    </form>
+    <div class="mt-5">
+        <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="DELETE">
+        </form>
+    </div>
 @endsection
