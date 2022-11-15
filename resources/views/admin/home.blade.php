@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    Benvenuto Utente
+    Benvenuto Alessandro Ramoni
 @endsection
