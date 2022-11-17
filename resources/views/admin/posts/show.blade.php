@@ -3,7 +3,7 @@
 @section('content')
     <h1>{{ $post->title }}</h1>
     @if ($post->category)
-        <p>{{ $post->category->name }}</p>
+        <p><a href="{{ route('admin.categories.show', $post->id) }}">{{ $post->category->name }}</a></p>
     @else
         <p>Nessuna categoria</p>
     @endif
@@ -28,7 +28,7 @@
         <form action="{{ route('admin.posts.destroy', ['post' => $post->id]) }}" method="POST">
             @csrf
             @method('DELETE')
-            <input type="submit" value="DELETE">
+            <input type="submit" value="DELETE" onclick="return confirm('Sei sicuro di volerlo cancellare?')">
         </form>
     </div>
 @endsection
