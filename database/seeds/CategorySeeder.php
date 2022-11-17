@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
     public function run()
     {
         //
-        $categories = ['Feedbacks', 'Interviews', 'Strumentals', 'Live Stages', 'Live Reportage', 'Others'];
+        $categories = ['Mare', 'Montagna', 'Weekend', 'Politica', 'Sport', 'Cultura'];
 
         foreach ($categories as $model) {
             $category = new Category();
