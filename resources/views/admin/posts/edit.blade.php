@@ -47,7 +47,7 @@
             @enderror
         </div>
 
-        @if ($errors->any())
+        {{-- @if ($errors->any())
             <div>
                 <h3>Tags:</h3>
                 @foreach ($tags as $tag)
@@ -65,7 +65,43 @@
                     <label>{{ $tag->name }}</label>
                 @endforeach
             </div>
+        @endif --}}
+
+
+        @if ($errors->any())
+            <div @error('tags') class="is-invalid" @enderror>
+                <label>Tags:</label>
+                @foreach ($tags as $tag)
+                    <input {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} type="checkbox" name="tags[]"
+                        value={{ $tag->id }}>
+                    <label>{{ $tag->name }}</label>
+                @endforeach
+            </div>
+        @else
+            <div>
+                <label>Tags:</label>
+                @foreach ($tags as $tag)
+                    <input {{ $post->tags->contains($tag) ? 'checked' : '' }} type="checkbox" name="tags[]"
+                        value="{{ $tag->id }}">
+                    <label>{{ $tag->name }}</label>
+                @endforeach
+            </div>
         @endif
+
+        {{-- <div>
+            <label>Tags:</label>
+            @foreach ($tags as $tag)
+                <label>{{ $tag->name }}</label>
+                @if ($errors->any())
+                    <input {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} type="checkbox" name="tags[]"
+                        value={{ $tag->id }}>
+                @else
+                    <input {{ $post->tags()->contains($tag) ? 'checked' : '' }} type="checkbox" name="tags[]"
+                        value="{{ $tag->id }}">
+                @endif
+            @endforeach
+        </div> --}}
+
 
         <input type="submit" value="Apply changes">
     </form>
