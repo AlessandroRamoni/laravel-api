@@ -2,13 +2,22 @@
 
 @section('content')
     <h1>{{ $post->title }}</h1>
-    <p>{{ $post->content }}</p>
-
     @if ($post->category)
         <p>{{ $post->category->name }}</p>
     @else
         <p>Nessuna categoria</p>
     @endif
+
+
+    <p>{{ $post->content }}</p>
+
+    <div>
+        <h3>Tags:</h3>
+        @foreach ($post->tags as $tag)
+            <span>{{ $tag->name }}</span>
+        @endforeach
+    </div>
+
 
 
     <div class="mt-5">
