@@ -44,6 +44,16 @@
                 </div>
             @enderror
         </div>
+
+        <div>
+            <h3>Tags:</h3>
+            @foreach ($tags as $tag)
+                <input {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} type="checkbox" name="tags[]"
+                    value="{{ $tag->id }}">
+                <label>{{ $tag->name }}</label>
+            @endforeach
+        </div>
+
         <input type="submit" value="Create">
     </form>
     <div class="mt-5">

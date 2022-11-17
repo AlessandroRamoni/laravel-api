@@ -51,7 +51,7 @@ class PostController extends Controller
             'title' => 'required|min:5|max:255',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'exists:tag,id'
+            'tags' => 'exists:tags,id'
         ]);
 
         $form_data = $request->all();
@@ -63,7 +63,7 @@ class PostController extends Controller
         $post->save();
 
         if(array_key_exists('tags', $form_data)){
-            $post->tag()->sync($form_data['tags']);
+            $post->tags()->sync($form_data['tags']);
         }
 
         return redirect()->route('admin.posts.show', $post->id);
@@ -109,7 +109,7 @@ class PostController extends Controller
             'title' => 'required|min:5|max:255',
             'content' => 'required',
             'category_id' => 'nullable|exists:categories,id',
-            'tags' => 'exists:tag,id'
+            'tags' => 'exists:tags,id'
         ]);
         $form_data = $request->all();
 
@@ -119,9 +119,9 @@ class PostController extends Controller
         }
 
         if(array_key_exists('tags', $form_data)){
-            $post->tag()->sync($form_data['tags']);
+            $post->tags()->sync($form_data['tags']);
         } else {
-            $post->tag()->sync([]);
+            $post->tags()->sync([]);
         }
 
         $post->update($form_data);
