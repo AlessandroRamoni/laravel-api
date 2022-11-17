@@ -96,7 +96,20 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
-        dd($category);
+        // dd($category);
+
+        $request->validate([
+            'name' => 'required|max:255'
+        ]);
+
+        $form_data = $request->all();
+        if($category->name != $form_data['name']){
+            $slug = $this->getSlug($form_data['name']);
+            $form_data['slug'] = $slug;
+        }
+        $category->update($form_data);
+
+        return redirect()->route('admin.categories.show', $category->id);
     }
 
     /**
