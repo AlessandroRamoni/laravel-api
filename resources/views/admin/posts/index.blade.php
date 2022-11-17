@@ -2,17 +2,22 @@
 
 @section('content')
     <div class="mb-5">
-        <a href="{{ route('admin.posts.create') }}">Add new Post</a>
+        <a href="{{ route('admin.posts.create') }}">Aggiungi post</a>
     </div>
     <h2>
-        Posts List:
+        Elenco dei post:
     </h2>
 
-    <ul>
-        @foreach ($posts as $post)
-            <li>
-                <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a>
-            </li>
-        @endforeach
-    </ul>
+    <div class="row">
+        <ul>
+            @foreach ($posts as $post)
+                <li>
+                    <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a>
+                    @if ($post->category)
+                        [{{ $post->category->name }}]
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    </div>
 @endsection
