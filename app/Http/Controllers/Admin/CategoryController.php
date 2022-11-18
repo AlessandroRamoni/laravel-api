@@ -83,6 +83,9 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        //dd($id)
+        $category = Category::where('slug', $id)->first();
+
         return view('admin.categories.edit', compact('category'));
     }
 
