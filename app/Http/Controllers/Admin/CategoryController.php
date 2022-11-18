@@ -118,9 +118,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
         //
+        $category->delete();
+        return redirect()->route('admin.categories.index');
     }
 
     private function getSlug($name){
