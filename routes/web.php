@@ -41,7 +41,10 @@ Route::middleware('auth')
             ->name('index');
             Route::resource('posts', 'PostController');
             Route::resource('categories', 'CategoryController');
+            Route::resource('tags', 'TagController');
     });
+
+    //  Route::resource('tags', 'TagController')->parameters(['tags' => 'tag:slug']);
 
 Route::get("{any?}", function(){
     return redirect()->route('index');
