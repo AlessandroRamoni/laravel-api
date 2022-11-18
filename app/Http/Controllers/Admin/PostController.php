@@ -37,6 +37,18 @@ class PostController extends Controller
         //
         $categories = Category::all();
         $tags = Tag::all();
+
+
+            // manca qualcosa per caricare le foto nei nuovi post -------------------------------
+
+        // if(array_key_exists('image', $form_data)){
+
+        //     $cover_path = Storage::put('post_covers', $form_data['image']);
+
+        //     $form_data['cover_path'] = $cover_path;
+        // }
+
+
         return view('admin.posts.create', compact('categories', 'tags'));
     }
 
