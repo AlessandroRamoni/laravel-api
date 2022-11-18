@@ -11,6 +11,11 @@
 
     <p>{{ $post->content }}</p>
 
+
+    <div>
+        <img class="img-fluid" src="{{ asset('storage/' . $post->cover_path) }} " alt="{{ $post->title }}">
+    </div>
+
     <div>
         <h3>Tags:</h3>
         @foreach ($post->tags as $tag)
