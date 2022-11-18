@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Tag;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+
 class TagController extends Controller
 {
     /**
@@ -106,6 +108,9 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         //
+        $tag->posts()->sync([]);
+        $tag->delete();
+        return redirect()->route('admin.tags.index');
     }
 
 
