@@ -54,6 +54,12 @@
             @endforeach
         </div>
 
+
+        <div>
+            <label for="image"></label>
+            <input type="file" name="image">
+        </div>
+
         <input type="submit" value="Create">
     </form>
     <div class="mt-5">
