@@ -50,7 +50,8 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         //
-        dd($tag);
+        // dd($tag);
+        return view('admin.tags.show', compact('tag'));
     }
 
     /**
@@ -74,6 +75,26 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         //
+        $request->validate([
+            'name' => 'required|max:30'
+        ],
+        [
+            'required' => ':attribute is required',
+            'max' => ':attribute should be max :max chars'
+        ]
+    );
+
+        $form_data = $request->all();
+
+
+        if ($tag->name != $form_data['name']) {
+           $slug = $this->getSlug($form_data['name']);
+           $form_data['slug'] = $slug;
+        }
+
+        $tag->update($form_data);
+
+        return redirect()->route('admin.tags.show', $tag->id);
     }
 
     /**
@@ -86,4 +107,18 @@ class TagController extends Controller
     {
         //
     }
+
+
+    private function getSlug($name){
+        $slug = Str::slug($name);
+        $slug_base = $slug;
+        $existingTag = Tag::where('slug', $slug)->first();
+        $counter = 1;
+        while ($existingTag) {
+            $slug = $slug_base . '_' . $counter;
+            $counter++;
+            $existingTag = Tag::where('slug', $slug)->first();
+        }
+            return $slug;
+        }
 }
