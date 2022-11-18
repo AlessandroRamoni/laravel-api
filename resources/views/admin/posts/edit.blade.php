@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    @if ($errors->any())
+    {{-- @if ($errors->any())
         <h2>Form errors: please fill all spaces correctly!</h2>
         <div class="alert alert-danger">
             <ul>
@@ -10,7 +10,8 @@
                 @endforeach
             </ul>
         </div>
-    @endif
+    @endif --}}
+
     <form method="POST" action="{{ route('admin.posts.update', $post->id) }}">
         @csrf
         @method('PATCH')
@@ -45,6 +46,11 @@
                     {{ $message }}
                 </div>
             @enderror
+        </div>
+
+        <div>
+            <label for="image">Cover image:</label>
+            <img class="img-fluid" src="{{ asset('storage/' . $post->cover_path) }} " alt="{{ $post->title }}">
         </div>
 
         {{-- @if ($errors->any())
