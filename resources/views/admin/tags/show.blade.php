@@ -4,13 +4,13 @@
     <h1>{{ $tag->name }}</h1>
 
 
-    <div @error('name') class="is-invalid" @enderror>
+    <div @error('name') class="ar-is-invalid" @enderror>
         <form action="{{ route('admin.tags.update', $tag->id) }}" method="POST">
             @csrf
             @method('PUT')
             <input type="text" name="name" value="{{ old('name', $tag->name) }}">
             @error('name')
-                <div>
+                <div class="text-danger">
                     {{ $message }}
                 </div>
             @enderror
