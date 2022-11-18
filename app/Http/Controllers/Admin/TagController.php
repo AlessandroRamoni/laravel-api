@@ -16,6 +16,8 @@ class TagController extends Controller
     public function index()
     {
         //
+        $tags = Tag::all();
+        return view('admin.tags.index', compact('tags'));
     }
 
     /**
@@ -48,6 +50,7 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         //
+        dd($tag);
     }
 
     /**
