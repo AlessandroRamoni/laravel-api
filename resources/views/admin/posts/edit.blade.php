@@ -49,8 +49,10 @@
         </div>
 
         <div>
-            <label for="image">Cover image:</label>
+            <label for="image">Aggiungi un'immagine:</label>
+            <input type="file" name="image">
             <img class="img-fluid" src="{{ asset('storage/' . $post->cover_path) }} " alt="{{ $post->title }}">
+
         </div>
 
         {{-- @if ($errors->any())
