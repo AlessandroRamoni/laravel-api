@@ -141,7 +141,15 @@ class PostController extends Controller
             $post->tags()->sync([]);
         }
 
+        if(array_key_exists('image', $form_data)){
+
+            $cover_path = Storage::put('post_covers', $form_data['image']);
+
+            $form_data['cover_path'] = $cover_path;
+        }
+
         $post->update($form_data);
+
 
         return redirect()->route('admin.posts.show', $post->id);
     }
