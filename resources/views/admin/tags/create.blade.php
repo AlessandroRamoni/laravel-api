@@ -26,6 +26,6 @@
         <input type="submit" value="Create">
     </form>
     <div class="mt-5">
-        <a href="{{ route('admin.tags.index') }}">BACK TO THE POSTS LIST</a>
+        <a href="{{ route('admin.tags.index') }}">Torna all'elenco dei tag</a>
     </div>
 @endsection
