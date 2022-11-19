@@ -22,12 +22,13 @@
         <form action="{{ route('admin.tags.destroy', $tag->id) }}" method="POST">
             @csrf
             @method('DELETE')
-            <input type="submit" value="DELETE">
+            <input type="submit" value="Cancella">
         </form>
     </div>
 
 
-    <div>
+    <div class="my-4">
+        <h4>Elenco dei post con il tag:</h4>
         @foreach ($tag->posts as $post)
             <div class="my-2">
                 <a href="{{ route('admin.posts.show', $post->id) }}">{{ $post->title }}</a>
