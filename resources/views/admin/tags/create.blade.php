@@ -23,43 +23,6 @@
             @enderror
         </div>
 
-        <div>
-            <label for="category_id">Genere:</label>
-            <select name="category_id">
-                <option value="">Nessuna</option>
-                @foreach ($tags as $tag)
-                    <option value="{{ $tag->id }}" {{ $tag->id == old('tag_id', -1) ? 'selected' : '' }}>
-                        {{ $tag->name }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
-
-        <div>
-            <label for="content">Content:</label>
-            <textarea required name="content" cols="30" rows="10">{{ old('content') }}</textarea>
-            @error('content')
-                <div class="my-2 bg-danger text-white">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-
-        <div>
-            <h3>Tags:</h3>
-            @foreach ($tags as $tag)
-                <input {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }} type="checkbox" name="tags[]"
-                    value="{{ $tag->id }}">
-                <label>{{ $tag->name }}</label>
-            @endforeach
-        </div>
-
-
-        <div>
-            <label for="image"></label>
-            <input type="file" name="image">
-        </div>
-
         <input type="submit" value="Create">
     </form>
     <div class="mt-5">
