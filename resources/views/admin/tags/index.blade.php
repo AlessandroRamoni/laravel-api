@@ -1,9 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    @foreach ($tags as $tag)
-        <div class="my-2">
-            <a href="{{ route('admin.tags.show', $tag->id) }}">{{ $tag->name }}</a>
-        </div>
-    @endforeach
+    <div class="my-2">
+        <ul>
+            @foreach ($tags as $tag)
+                <li>
+                    <a href="{{ route('admin.tags.show', $tag->id) }}">{{ $tag->name }}</a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 @endsection
