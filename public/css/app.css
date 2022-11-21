@@ -10932,3 +10932,7 @@ a.text-dark:focus {
   }
 }
 
+.ar-is-invalid {
+  border: 1px solid red;
+}
+
