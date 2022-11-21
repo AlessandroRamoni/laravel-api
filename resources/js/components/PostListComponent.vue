@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-if="posts.length > 0">
-            <div v-for="post in posts" :key="post.id">
+            <div style="margin-bottom: 20px" v-for="post in posts" :key="post.id">
                 <span @click="showPost(post.id)">{{ post.title }}</span>
             </div>
         </div>
@@ -23,7 +23,9 @@ export default {
     },
     methods: {
         showPost(id) {
-            this.$emit('clickedPost', id)
+            console.log('ciao');
+            this.$emit('clickedPost', id);
+
         }
     }
 
