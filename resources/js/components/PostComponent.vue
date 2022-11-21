@@ -11,7 +11,7 @@
 export default {
     name: 'PostComponent',
     props: {
-        post: Object
+        post: String
     }
 }
 </script>

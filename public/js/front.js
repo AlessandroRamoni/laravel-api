@@ -1911,7 +1911,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PostComponent',
   props: {
-    post: Object
+    post: String
   }
 });
 
@@ -1933,6 +1933,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     showPost: function showPost(id) {
+      console.log('ciao');
       this.$emit('clickedPost', id);
     }
   }
@@ -1964,7 +1965,7 @@ __webpack_require__.r(__webpack_exports__);
       posts: [],
       errorMessage: '',
       loading: true,
-      detail: undefined
+      detail: null
     };
   },
   mounted: function mounted() {
@@ -1987,7 +1988,10 @@ __webpack_require__.r(__webpack_exports__);
       this.loading = true;
       axios.get('api/post/' + id).then(function (response) {
         console.log(response);
-        _this2.detail = response.data.success ? response.data.results : undefined;
+        _this2.detail = response.status == 200 ? response.data : null;
+        console.log(_this2.detail);
+        console.log(response.data.success);
+        console.log(response.status);
         _this2.loading = false;
       })["catch"](function (e) {
         console.log('errore', e);
@@ -1995,7 +1999,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     showList: function showList() {
-      this.detail = undefined;
+      this.detail = null;
     }
   }
 });
@@ -2060,7 +2064,10 @@ var render = function render() {
     _c = _vm._self._c;
   return _c("div", [_vm.posts.length > 0 ? _c("div", _vm._l(_vm.posts, function (post) {
     return _c("div", {
-      key: post.id
+      key: post.id,
+      staticStyle: {
+        "margin-bottom": "20px"
+      }
     }, [_c("span", {
       on: {
         click: function click($event) {
@@ -2090,14 +2097,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_vm.loading ? _c("div", [_vm._v("\n        Waiting...\n    ")]) : _vm.errorMessage.length > 0 ? _c("div", [_vm._v("\n        " + _vm._s(_vm.errorMessage) + "\n    ")]) : !_vm.detail ? _c("PostListComponent", {
-    attrs: {
-      posts: _vm.posts
-    },
-    on: {
-      clickedPost: _vm.showPost
-    }
-  }) : _c("div", [_c("PostComponent", {
+  return _c("div", [_vm.loading ? _c("div", [_vm._v("\n        Waiting...\n    ")]) : _vm.detail != null ? _c("div", [_c("PostComponent", {
     attrs: {
       post: _vm.detail
     }
@@ -2107,7 +2107,14 @@ var render = function render() {
         _vm.showList = undefined;
       }
     }
-  }, [_vm._v("Indietro")])], 1)], 1);
+  }, [_vm._v("Indietro")])], 1) : _vm.errorMessage.length > 0 ? _c("div", [_vm._v("\n        " + _vm._s(_vm.errorMessage) + "\n    ")]) : _c("PostListComponent", {
+    attrs: {
+      posts: _vm.posts
+    },
+    on: {
+      clickedPost: _vm.showPost
+    }
+  })], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
