@@ -8,7 +8,13 @@
             {{ errorMessage }}
         </div>
 
-        <PostListComponent v-else :posts="posts" @clickedPost="showPost" />
+        <PostListComponent v-else-if="!detail" :posts="posts" @clickedPost="showPost" />
+
+        <div v-else>
+            <PostComponent :post="detail" />
+            <button @click="showList = undefined">Indietro</button>
+
+        </div>
 
         <!-- <div v-else-if="posts.length > 0">
             <div v-for="post in posts" :key="post.id">
@@ -38,7 +44,8 @@ export default {
         return {
             posts: [],
             errorMessage: '',
-            loading: true
+            loading: true,
+            detail: undefined
         }
 
     },
@@ -61,12 +68,16 @@ export default {
             axios.get('api/post/' + id)
                 .then(response => {
                     console.log(response);
+                    this.detail = response.data.success ? response.data.results : undefined;
                     this.loading = false;
                 })
                 .catch(e => {
                     console.log('errore', e);
                     this.loading = false;
                 })
+        },
+        showList() {
+            this.detail = undefined
         }
     }
 
