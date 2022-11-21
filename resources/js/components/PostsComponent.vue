@@ -10,7 +10,7 @@
 
         <div v-else-if="posts.length > 0">
             <div v-for="post in posts" :key="post.id">
-                {{ post.title }}
+                <span @click="showPost(post.id)">{{ post.title }}</span>
             </div>
         </div>
 
@@ -45,6 +45,21 @@ export default {
             }
             this.loading = false
         })
+    },
+    methods: {
+        showPost(id) {
+            console.log(id);
+            this.loading = true;
+            axios.get('api/post/' + id)
+                .then(response => {
+                    console.log(response);
+                    this.loading = false;
+                })
+                .catch(e => {
+                    console.log('errore', e);
+                    this.loading = false;
+                })
+        }
     }
 
 }
