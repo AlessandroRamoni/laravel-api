@@ -71,7 +71,7 @@ class PostController extends Controller
             'success' => true
         ];
 
-        return resource()->json($data);
+        return response()->json($data);
     }
 
     /**
