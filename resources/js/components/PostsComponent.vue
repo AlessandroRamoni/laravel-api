@@ -8,7 +8,9 @@
             {{ errorMessage }}
         </div>
 
-        <div v-else-if="posts.length > 0">
+        <PostListComponent v-else :posts="posts" @clickedPost="showPost" />
+
+        <!-- <div v-else-if="posts.length > 0">
             <div v-for="post in posts" :key="post.id">
                 <span @click="showPost(post.id)">{{ post.title }}</span>
             </div>
@@ -16,16 +18,22 @@
 
         <div v-else>
             Nessun post trovato, are you sure?
-        </div>
+        </div> -->
     </div>
 
 </template>
 
 <script>
 
+import PostComponent from './PostComponent.vue'
+import PostListComponent from './PostListComponent.vue'
 
 export default {
     name: 'PostsComponent',
+    components: {
+        PostComponent,
+        PostListComponent
+    },
     data() {
         return {
             posts: [],
