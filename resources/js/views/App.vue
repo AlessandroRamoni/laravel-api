@@ -1,15 +1,15 @@
 <template>
     <div>
-        <ExampleComponent />
+        <PostsComponent />
     </div>
 </template>
 
 <script>
-import ExampleComponent from '../components/ExampleComponent.vue';
+import PostsComponent from '../components/PostsComponent.vue';
 
 export default {
     name: 'App',
-    components: { ExampleComponent }
+    components: { PostsComponent }
 };
 </script>
 
