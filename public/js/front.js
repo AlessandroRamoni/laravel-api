@@ -1929,6 +1929,20 @@ __webpack_require__.r(__webpack_exports__);
       }
       _this.loading = false;
     });
+  },
+  methods: {
+    showPost: function showPost(id) {
+      var _this2 = this;
+      console.log(id);
+      this.loading = true;
+      axios.get('api/post/' + id).then(function (response) {
+        console.log(response);
+        _this2.loading = false;
+      })["catch"](function (e) {
+        console.log('errore', e);
+        _this2.loading = false;
+      });
+    }
   }
 });
 
@@ -1971,7 +1985,13 @@ var render = function render() {
   return _c("div", [_vm.loading ? _c("div", [_vm._v("\n        Waiting...\n    ")]) : _vm.errorMessage.length > 0 ? _c("div", [_vm._v("\n        " + _vm._s(_vm.errorMessage) + "\n    ")]) : _vm.posts.length > 0 ? _c("div", _vm._l(_vm.posts, function (post) {
     return _c("div", {
       key: post.id
-    }, [_vm._v("\n            " + _vm._s(post.title) + "\n        ")]);
+    }, [_c("span", {
+      on: {
+        click: function click($event) {
+          return _vm.showPost(post.id);
+        }
+      }
+    }, [_vm._v(_vm._s(post.title))])]);
   }), 0) : _c("div", [_vm._v("\n        Nessun post trovato, are you sure?\n    ")])]);
 };
 var staticRenderFns = [];
