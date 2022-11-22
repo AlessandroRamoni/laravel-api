@@ -6,7 +6,7 @@
         <div v-else-if="detail != undefined">
             <h2>Dettagli:</h2>
             <PostComponent :post="detail" />
-            <button @click="showList = undefined">Indietro</button>
+            <button @click="detail = undefined">Indietro</button>
         </div>
         <div v-else-if="errorMessage.length > 0">
             {{ errorMessage }}
