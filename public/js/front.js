@@ -2108,7 +2108,7 @@ var render = function render() {
   }), _vm._v(" "), _c("button", {
     on: {
       click: function click($event) {
-        _vm.showList = undefined;
+        _vm.detail = undefined;
       }
     }
   }, [_vm._v("Indietro")])], 1) : _vm.errorMessage.length > 0 ? _c("div", [_vm._v("\n        " + _vm._s(_vm.errorMessage) + "\n    ")]) : _c("PostListComponent", {
