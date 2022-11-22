@@ -1909,10 +1909,14 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PostComponent',
+  name: 'PostController',
   props: {
-    post: String
+    post: Object
   }
+
+  // mounted() {
+  //     console.log(this.post)
+  // }
 });
 
 /***/ }),
@@ -1965,7 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
       posts: [],
       errorMessage: '',
       loading: true,
-      detail: null
+      detail: undefined
     };
   },
   mounted: function mounted() {
@@ -1986,9 +1990,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
       console.log(id);
       this.loading = true;
-      axios.get('api/post/' + id).then(function (response) {
+      axios.get('api/posts/' + id).then(function (response) {
         console.log(response);
-        _this2.detail = response.status == 200 ? response.data : null;
+        _this2.detail = response.status == 200 ? response.data.results : undefined;
         console.log(_this2.detail);
         console.log(response.data.success);
         console.log(response.status);
@@ -1999,7 +2003,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     showList: function showList() {
-      this.detail = null;
+      this.detail = undefined;
     }
   }
 });
@@ -2097,7 +2101,7 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_vm.loading ? _c("div", [_vm._v("\n        Waiting...\n    ")]) : _vm.detail != null ? _c("div", [_c("PostComponent", {
+  return _c("div", [_vm.loading ? _c("div", [_vm._v("\n        Waiting...\n    ")]) : _vm.detail != undefined ? _c("div", [_c("h2", [_vm._v("Dettagli:")]), _vm._v(" "), _c("PostComponent", {
     attrs: {
       post: _vm.detail
     }
