@@ -3,18 +3,18 @@
         <div v-if="loading">
             Waiting...
         </div>
-
+        <div v-else-if="detail != undefined">
+            <h2>Dettagli:</h2>
+            <PostComponent :post="detail" />
+            <button @click="showList = undefined">Indietro</button>
+        </div>
         <div v-else-if="errorMessage.length > 0">
             {{ errorMessage }}
         </div>
 
-        <PostListComponent v-else-if="!detail" :posts="posts" @clickedPost="showPost" />
+        <PostListComponent v-else :posts="posts" @clickedPost="showPost" />
 
-        <div v-else>
-            <PostComponent :post="detail" />
-            <button @click="showList = undefined">Indietro</button>
 
-        </div>
 
         <!-- <div v-else-if="posts.length > 0">
             <div v-for="post in posts" :key="post.id">
@@ -52,6 +52,8 @@ export default {
     mounted() {
         console.log('PostsComponent presente');
 
+
+
         axios.get('/api/posts').then(({ data }) => {
             if (data.success) {
                 this.posts = data.results;
@@ -60,15 +62,19 @@ export default {
             }
             this.loading = false
         })
+
     },
     methods: {
         showPost(id) {
             console.log(id);
             this.loading = true;
-            axios.get('api/post/' + id)
+            axios.get('api/posts/' + id)
                 .then(response => {
                     console.log(response);
-                    this.detail = response.data.success ? response.data.results : undefined;
+                    this.detail = response.status == 200 ? response.data.results : undefined;
+                    console.log(this.detail);
+                    console.log(response.data.success);
+                    console.log(response.status);
                     this.loading = false;
                 })
                 .catch(e => {

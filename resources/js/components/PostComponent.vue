@@ -9,10 +9,14 @@
 
 <script>
 export default {
-    name: 'PostComponent',
+    name: 'PostController',
     props: {
-        post: String
-    }
+        post: Object
+    },
+
+    // mounted() {
+    //     console.log(this.post)
+    // }
 }
 </script>
 
